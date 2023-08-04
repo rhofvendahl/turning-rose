@@ -1,5 +1,6 @@
 import React from "react";
-import { Frame } from "../hooks/useFrame";
+
+import { Frame } from "../hooks/useFrames";
 
 const ViewFrame = ({ frame }: { frame: Frame }) => {
   if (frame.model === null) {

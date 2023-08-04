@@ -1,19 +1,23 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 
-import { Frame } from "../hooks/useFrame";
-import PositionSlider from "./PositionSlider";
-import SpeedSlider from "./SpeedSlider";
-import SpeedModeButton from "./SpeedModeButton";
-import { SPEED_CONSTANTS, ControlType, LOADED_THRESHOLD, getNLoaded } from "../shared/controlsStuff";
+import { Frame } from "../hooks/useFrames";
+import { getLoadedRatio } from "../util";
 
 import "./LoadingBanner.css";
+
+const getPercent = (frames: Frame[]) => {
+  const loadedRatio = getLoadedRatio(frames);
+  return loadedRatio > 1 ? "100%" : `${loadedRatio * 100}%`;
+}
 
 const LoadingBanner = ({ frames }: {
   frames: Frame[],
 }) => {
   return (
     <div id="loading-banner">
-      Loading rose...
+      <div id="loading-track"></div>
+      <div id="loading-progress" style={{ width: getPercent(frames) }} />
+      <div id="loading-text">Loading rose...</div>
     </div>
   );
 };

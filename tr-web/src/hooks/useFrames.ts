@@ -55,11 +55,18 @@ const loadModels = async ({ frames, setFrames, currentFrameRef, setCurrentFrame 
 }) => {
   const loader = new GLTFLoader();
 
+  // The last frame should display while the rest are loading
+  const lastFrame = frames[frames.length - 1];
+  const model = await loader.loadAsync(MODEL_PATH_BASE + lastFrame.name);
+  configureModel(model);
+  lastFrame.model = model;
+  console.log("Loading frame loaded:", lastFrame.index, lastFrame.name)
+
   let nextIndex = getNextIndex(frames, currentFrameRef.current);
   while (nextIndex !== null) {
     const loadingFrame = frames[nextIndex];
     const model = await loader.loadAsync(MODEL_PATH_BASE + loadingFrame.name);
-    console.log("Loaded:", loadingFrame.index, loadingFrame.name);
+    console.log("Loaded:", loadingFrame.index, loadingFrame.name)
     configureModel(model);
     loadingFrame.model = model;
     
@@ -78,7 +85,7 @@ const loadModels = async ({ frames, setFrames, currentFrameRef, setCurrentFrame 
 };
 
 // NOTE: This is pretty much guaranteed to run no more than once
-export const useFrame = ({ setFrames, currentFrameRef, setCurrentFrame }: {
+export const useFrames = ({ setFrames, currentFrameRef, setCurrentFrame }: {
   setFrames: (frames: Frame[]) => void,
   currentFrameRef: React.MutableRefObject<Frame | null>,
   setCurrentFrame: (frame: Frame) => void, 

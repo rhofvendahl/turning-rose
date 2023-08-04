@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import { Frame } from "../hooks/useFrame";
+import { Frame } from "../hooks/useFrames";
 import PositionSlider from "./PositionSlider";
 import SpeedSlider from "./SpeedSlider";
 import SpeedModeButton from "./SpeedModeButton";
-import { SPEED_CONSTANTS, ControlType, LOADED_THRESHOLD, getNLoaded } from "../shared/controlsStuff";
+import { SPEED_CONSTANTS, ControlType, LOADED_THRESHOLD, getLoadedRatio } from "../util";
 
 import "./Controls.css";
 
@@ -117,11 +117,10 @@ const Controls = ({ frames, currentFrame, setCurrentFrame }: {
     if (frames.length === 0) {
       return;
     }
-    const nLoaded = getNLoaded(frames);
-    if (nLoaded >= LOADED_THRESHOLD) {
+    const loadedRatio = getLoadedRatio(frames);
+    if (loadedRatio >= 1) {
       setPlaySpeed(SPEED_CONSTANTS.PLAY);
     }
-    // waitOnLoading(frames, 0, LOADED_THRESHOLD, () => setPlaySpeed(SPEED_CONSTANTS.PLAY));
   }, [frames]);
 
   useEffect(() => {

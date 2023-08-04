@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { Frame } from "../hooks/useFrames";
-import { ControlType } from "../util";
+import { ControlType } from "../shared";
 
 import "./Slider.css";
 

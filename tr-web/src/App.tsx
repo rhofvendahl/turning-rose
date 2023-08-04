@@ -7,7 +7,7 @@ import ViewFrame from "./components/ViewFrame";
 import Controls from "./components/Controls";
 import { useFrames, Frame } from "./hooks/useFrames";
 import LoadingBanner from "./components/LoadingBanner";
-import { getLoadedRatio } from "./util"
+import { getLoadedRatio } from "./shared"
 
 // This doesn't seem ideal, but even useEffect with empty inputs within App seems to run twice over the app"s lifecycle - no good.
 let hasInitialized = false;

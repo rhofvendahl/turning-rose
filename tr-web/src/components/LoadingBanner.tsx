@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Frame } from "../hooks/useFrames";
-import { getLoadedRatio } from "../util";
+import { getLoadedRatio } from "../shared";
 
 import "./LoadingBanner.css";
 

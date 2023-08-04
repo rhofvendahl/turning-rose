@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { SPEED_CONSTANTS, ControlType, speedDirectionToSliderValue, sliderValueToSpeedDirection } from "../util"
+import { SPEED_CONSTANTS, ControlType, speedDirectionToSliderValue, sliderValueToSpeedDirection } from "../shared"
 
 import "./Slider.css";
 

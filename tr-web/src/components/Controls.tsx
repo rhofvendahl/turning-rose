@@ -4,7 +4,7 @@ import { Frame } from "../hooks/useFrames";
 import PositionSlider from "./PositionSlider";
 import SpeedSlider from "./SpeedSlider";
 import SpeedModeButton from "./SpeedModeButton";
-import { SPEED_CONSTANTS, ControlType, LOADED_THRESHOLD, getLoadedRatio } from "../util";
+import { SPEED_CONSTANTS, ControlType, LOADED_THRESHOLD, getLoadedRatio } from "../shared";
 
 import "./Controls.css";
 

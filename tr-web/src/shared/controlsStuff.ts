@@ -20,7 +20,7 @@ export type ControlType = 'bouncyLoop' | 'cyclicLoop' | 'linearLoop' | 'manual';
 
 // The number of frames that must be loaded before play starts
 // Constant for now; might want to make it dependent on internet speed or something, later
-export const LOADED_THRESHOLD = 5;
+export const LOADED_THRESHOLD = 30;
 
 export const speedDirectionToSliderValue = (speed: number | null, direction: boolean): number => {
   if (speed === null) {

@@ -48,3 +48,9 @@ npm run build --watch
 ```
 npm run dev
 ```
+
+### Deploy to Heroku
+(This is a bit tricky as the webapp isn't root)
+```
+git subtree push --prefix tr-web heroku main
+```

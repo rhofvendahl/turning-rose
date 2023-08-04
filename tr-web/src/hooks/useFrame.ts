@@ -9,7 +9,7 @@ export interface Frame {
   model: GLTF | null;
 }
 
-export const MODEL_PATH_BASE = '/db/gltf/';
+export const MODEL_PATH_BASE = "https://storage.googleapis.com/turning_rose/gltf/";
 
 const getNextIndex = (frames: Frame[], loadForwardFrom: Frame | null): number | null => {
   if (loadForwardFrom === null) {

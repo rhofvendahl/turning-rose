@@ -1,3 +1,5 @@
+import { Frame } from "../hooks/useFrame";
+
 // NOTE: "Speed" throughout is always positive, and "direction" is a boolean where true=forward & false=backward
 
 const SPEED_MIN = 2;
@@ -9,7 +11,7 @@ export const SPEED_CONSTANTS = {
   REWIND: SPEED_MAX * .7,
   PLAY: 8,
   FAST_FORWARD: SPEED_MAX * .7,
-  LOOP_CAP: SPEED_MAX * .7
+  LOOP_CAP: SPEED_MAX,
 }
 
 // Used mainly to tell ModeInput what to be; NOT a state.
@@ -34,3 +36,7 @@ export const sliderValueToSpeedDirection = (sliderValue: number): [number | null
   const speed = sliderValue === 0 ? null : Math.abs(sliderValue) + SPEED_CONSTANTS.MIN;
   return [speed, direction];
 };
+
+export const getNLoaded = (frames: Frame[]): number => {
+  return frames.filter((frame) => frame.model !== null).length;
+}

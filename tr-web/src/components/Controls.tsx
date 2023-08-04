@@ -4,7 +4,7 @@ import { Frame } from "../hooks/useFrame";
 import PositionSlider from "./PositionSlider";
 import SpeedSlider from "./SpeedSlider";
 import SpeedModeButton from "./SpeedModeButton";
-import { SPEED_CONSTANTS, ControlType, LOADED_THRESHOLD } from "../shared/controlsStuff";
+import { SPEED_CONSTANTS, ControlType, LOADED_THRESHOLD, getNLoaded } from "../shared/controlsStuff";
 
 import "./Controls.css";
 
@@ -74,6 +74,7 @@ const getNewSpeedDirection = ({ frameIndex, nFrames, prevSpeed, prevDirection, c
   return [speed, direction];
 };
 
+// TODO: Refactor this out, I think
 // Call some function after n frames past current have loaded
 const waitOnLoading = (frames: Frame[], currentFrameIndex: number, loadedThreshold: number, callOnLoaded: () => void) => {
   if (frames.length === 0) {
@@ -116,7 +117,11 @@ const Controls = ({ frames, currentFrame, setCurrentFrame }: {
     if (frames.length === 0) {
       return;
     }
-    waitOnLoading(frames, 0, LOADED_THRESHOLD, () => setPlaySpeed(SPEED_CONSTANTS.PLAY));
+    const nLoaded = getNLoaded(frames);
+    if (nLoaded >= LOADED_THRESHOLD) {
+      setPlaySpeed(SPEED_CONSTANTS.PLAY);
+    }
+    // waitOnLoading(frames, 0, LOADED_THRESHOLD, () => setPlaySpeed(SPEED_CONSTANTS.PLAY));
   }, [frames]);
 
   useEffect(() => {

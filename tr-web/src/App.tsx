@@ -23,10 +23,14 @@ const App = () => {
   // useEffect necessary for React to notice currentFrame update
   useEffect(() => {
     if (!hasInitialized) {
-      useFrame({ frames, setFrames, currentFrameRef, setCurrentFrame });
+      useFrame({ setFrames, currentFrameRef, setCurrentFrame });
       hasInitialized = true;
     }
   }, []);
+
+  useEffect(() => {
+
+  }, [frames]);
 
   return (
     <div id="content-container">

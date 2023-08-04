@@ -16,7 +16,7 @@ const PositionSlider = ({ currentFrame, setCurrentFrame, frames, setControlType 
     if (currentFrame !== null && frames.length > 1) {
       setSliderValue(currentFrame.index);
     }
-  }, [currentFrame, frames]);
+  }, [currentFrame]);
 
   return (
     <input id="position-slider"

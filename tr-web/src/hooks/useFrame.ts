@@ -11,19 +11,19 @@ export interface Frame {
 
 export const MODEL_PATH_BASE = "https://storage.googleapis.com/turning_rose/gltf/";
 
-const getNextIndex = (frames: Frame[], loadForwardFrom: Frame | null): number | null => {
-  if (loadForwardFrom === null) {
+const getNextIndex = (frames: Frame[], currentFrameIndex: Frame | null): number | null => {
+  if (currentFrameIndex === null) {
     return 0;
   }
 
   // First load from the current frame onward; the current frame should already be loaded but no harm checking
-  for (let i = loadForwardFrom.index; i < frames.length; i++) {
+  for (let i = currentFrameIndex.index; i < frames.length; i++) {
     if (frames[i].model === null) {
       return i;
     }
   }
   // If everything ahead is loaded, load any skipped frames
-  for (let i = 0; i < loadForwardFrom.index; i++) {
+  for (let i = 0; i < frames.length; i++) {
     if (frames[i].model === null) {
       return i;
     }
@@ -47,49 +47,38 @@ const configureModel = (model: GLTF) => {
   })
 }
 
-const loadModels = async ({ frames, currentFrameRef, setCurrentFrame }: {
+const loadModels = async ({ frames, setFrames, currentFrameRef, setCurrentFrame }: {
   frames: Frame[],
+  setFrames: (frames: Frame[]) => void,
   currentFrameRef: React.MutableRefObject<Frame | null>,
-  setCurrentFrame: (x: any) => void,
+  setCurrentFrame: (frame: Frame) => void,
 }) => {
   const loader = new GLTFLoader();
 
   let nextIndex = getNextIndex(frames, currentFrameRef.current);
-  let prevCurrentFrameRefValue = currentFrameRef.current;
   while (nextIndex !== null) {
     const loadingFrame = frames[nextIndex];
     const model = await loader.loadAsync(MODEL_PATH_BASE + loadingFrame.name);
-    console.log(`Loaded: ${loadingFrame.index} ${loadingFrame.name}`)
+    console.log("Loaded:", loadingFrame.index, loadingFrame.name);
     configureModel(model);
     loadingFrame.model = model;
+    
+    // This is 100% just to trigger frames state change elsewhere in app.
+    // This does not change the frame objects, only the containing array.
+    const newFramesArray: Frame[] = frames.map((frame: Frame) => frame);
+    setFrames(newFramesArray);
+
     if (currentFrameRef.current === null) {
       setCurrentFrame(loadingFrame);
       currentFrameRef.current = loadingFrame;
     }
-    // In theory setCurrentFrame should result in the recalculation of currentFrameRef, but timing may be unreliable.
-    // So, currentFrameRef.current should have either the previous currentFrameValue, or the one that's just been set.
-    // If it's something else, however, that means somewhere external has changed it, in which case that new value
-    // should be respected as the new place to load forward from.
-    const latestCurrentFrameRefValue = currentFrameRef.current;
-    const notPrevValue = latestCurrentFrameRefValue?.name !== prevCurrentFrameRefValue?.name;
-    const notNewValue = latestCurrentFrameRefValue?.name !== loadingFrame.name;
-    const currentFrameJump = notPrevValue && notNewValue
-    // The usual case, in which loading continues from the latest loaded frame
-    let loadForwardFrom = loadingFrame;
-    // The case where something like the user skipping forward has happened, causing currentFrame to change unexpectedly
-    if (currentFrameJump && latestCurrentFrameRefValue !== null) {
-      console.log("Current frame jump detected; modifying load order.")
-      loadForwardFrom = latestCurrentFrameRefValue;
-    }
     // Update for subsequent checks
-    nextIndex = getNextIndex(frames, loadForwardFrom);
-    prevCurrentFrameRefValue = latestCurrentFrameRefValue;
+    nextIndex = getNextIndex(frames, currentFrameRef.current);
   }
 };
 
 // NOTE: This is pretty much guaranteed to run no more than once
-export const useFrame = ({ frames, setFrames, currentFrameRef, setCurrentFrame }: {
-  frames: Frame[],
+export const useFrame = ({ setFrames, currentFrameRef, setCurrentFrame }: {
   setFrames: (frames: Frame[]) => void,
   currentFrameRef: React.MutableRefObject<Frame | null>,
   setCurrentFrame: (frame: Frame) => void, 
@@ -104,5 +93,6 @@ export const useFrame = ({ frames, setFrames, currentFrameRef, setCurrentFrame }
     return frame;
   });
   setFrames(newFrames);
-  loadModels({ frames: newFrames, currentFrameRef, setCurrentFrame });
+  // Passing in newFrames cause I'm not sure how long til frames gets updated from setFrames()
+  loadModels({ frames: newFrames, setFrames, currentFrameRef, setCurrentFrame });
 };

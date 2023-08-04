@@ -6,7 +6,6 @@ import "./App.css";
 import ViewFrame from "./components/ViewFrame";
 import Controls from "./components/Controls";
 import { useFrame, Frame } from "./hooks/useFrame";
-import modelNames from "./assets/json/modelNames.json"
 
 // This doesn't seem ideal, but even useEffect with empty inputs within App seems to run twice over the app"s lifecycle - no good.
 let hasInitialized = false;
@@ -28,7 +27,7 @@ const App = () => {
       hasInitialized = true;
     }
   }, []);
-  
+
   return (
     <div id="content-container">
       <div id="controls-wrapper">
@@ -37,7 +36,7 @@ const App = () => {
       <Canvas id="canvas">
         <ambientLight intensity={1} />
         <OrbitControls />
-        <mesh position={[0, .2, 0]}>
+        <mesh position={[0, .3, 0]}>
           { currentFrame && <ViewFrame frame={currentFrame} /> }
         </mesh>
       </Canvas>

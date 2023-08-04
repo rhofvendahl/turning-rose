@@ -13,11 +13,17 @@
     --leaf-green-dark: #202317;
 }
 
-html, body, #root {
-  height: 100%;
+html,
+body,
+#root {
+    height: 100%;
 }
 
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+* {
+    touch-action: none;
 }

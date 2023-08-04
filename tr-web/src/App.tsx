@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 
 import "./App.css";
@@ -12,14 +12,14 @@ import { getLoadedRatio } from "./shared"
 // This doesn't seem ideal, but even useEffect with empty inputs within App seems to run twice over the app"s lifecycle - no good.
 let hasInitialized = false;
 
-// Yes I am aware that using loading ratio to drive rotation is silly. There are other ways to do it. This is easy.
-const getRotation = (frames: Frame[]): [number, number, number] => {
-  const loadedRatio = getLoadedRatio(frames);
-  if (loadedRatio >= 1) {
-    return [0, 0, 0];
-  }
-  return [0, loadedRatio * .2, 0];
-};
+// // Yes I am aware that using loading ratio to drive rotation is silly. There are other ways to do it. This is easy.
+// const getRotation = (frames: Frame[]): [number, number, number] => {
+//   const loadedRatio = getLoadedRatio(frames);
+//   if (loadedRatio >= 1) {
+//     return [0, 0, 0];
+//   }
+//   return [0, loadedRatio * .2, 0];
+// };
 
 const App = () => {
   const [frames, setFrames] = useState<Frame[]>([]);
@@ -51,7 +51,7 @@ const App = () => {
       <Canvas id="canvas">
         <ambientLight intensity={1} />
         <OrbitControls />
-        <mesh rotation={getRotation(frames)}>
+        <mesh>
           { currentFrame !== null && getLoadedRatio(frames) >= 1 ? <ViewFrame frame={currentFrame} /> : <ViewFrame frame={frames[frames.length - 1]} />}
         </mesh>
       </Canvas>

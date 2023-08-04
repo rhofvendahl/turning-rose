@@ -1,5 +1,5 @@
 #loop-button {
-    margin-bottom: 45px;
+    margin-bottom: 38px;
     background-color: var(--control-background-color);
     color: var(--text-light);
     font-size: 16px;
@@ -24,6 +24,14 @@
     color: var(--text-dark);
 }
 
-#speed-slider-wrapper {
+#speed-mode-buttons {
     margin-bottom: 8px;
+}
+
+#speed-slider-wrapper {
+    margin-bottom: 6px;
+}
+
+#position-slider-wrapper {
+    margin-bottom: 18px;
 }

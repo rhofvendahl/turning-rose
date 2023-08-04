@@ -1,6 +1,8 @@
 import { Mesh } from 'three';
 import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
+import modelNames from "../assets/json/modelNames.json"
+
 export interface Frame {
   index: number;
   name: string;
@@ -85,20 +87,7 @@ const loadModels = async ({ frames, currentFrameRef, setCurrentFrame }: {
   }
 };
 
-const getFrames = async (): Promise<Frame[]> => {
-    const response = await fetch('/db/json/modelNames.json');
-    const modelNames: string[] = await response.json();
-    const frames = modelNames.map((name, i) => {
-      const frame: Frame = {
-        index: i,
-        name: name,
-        model: null,
-      };
-      return frame;
-    });
-    return frames;
-};
-
+// NOTE: This is pretty much guaranteed to run no more than once
 export const useFrame = ({ frames, setFrames, currentFrameRef, setCurrentFrame }: {
   frames: Frame[],
   setFrames: (frames: Frame[]) => void,
@@ -106,10 +95,14 @@ export const useFrame = ({ frames, setFrames, currentFrameRef, setCurrentFrame }
   setCurrentFrame: (frame: Frame) => void, 
 }) => {
   console.log('Loading frames...');
-
-  getFrames()
-    .then((frames) => {
-      setFrames(frames);
-      loadModels({ frames, currentFrameRef, setCurrentFrame });
-    });
+  const newFrames: Frame[] = modelNames.map((name, i) => {
+    const frame: Frame = {
+      index: i,
+      name: name,
+      model: null,
+    };
+    return frame;
+  });
+  setFrames(newFrames);
+  loadModels({ frames: newFrames, currentFrameRef, setCurrentFrame });
 };

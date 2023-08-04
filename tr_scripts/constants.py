@@ -12,7 +12,7 @@ IMAGE_DATA_FILEPATH = "/Volumes/T7/turning_rose/outputs/metadata/image_data.csv"
 
 # Useful for webapp
 WEBAPP_GLTF_DIRPATH = "../tr-web/public/db/gltf"
-WEBAPP_INDEX_FILEPATH = "../tr-web/public/db/json/modelNames.json"
+WEBAPP_INDEX_FILEPATH = "../tr-web/src/assets/json/modelNames.json"
 
 
 # NOTE: Capture indices start at 0 and go to 132 (including final darker), for a total of 133 frames

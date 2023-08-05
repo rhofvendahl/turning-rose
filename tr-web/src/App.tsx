@@ -22,12 +22,14 @@ const degToRad = (deg: number): number => {
 
 // Yes I am aware that using loading ratio to drive rotation is silly. There are other ways to do it. This is easy.
 // UPDATE: And here I was wonderwing why it moves so slowly on first load...
-const getRotation = (frames: Frame[]): [number, number, number] => {
+const getRotation = (frames: Frame[], start: number): [number, number, number] => {
+  const delta = (Date.now() - start) / 1000;
+  console.log("DELTA", delta)
   const loadedRatio = getLoadedRatio(frames);
   if (loadedRatio >= 1) {
     return [0, 0, 0];
   }
-  return [0, degToRad(loadedRatio * 45), 0];
+  return [0, degToRad(delta * 4), 0];
 };
 
 const App = () => {
@@ -35,6 +37,7 @@ const App = () => {
   const [currentFrame, setCurrentFrame] = useState<Frame | null>(null);
   const currentFrameRef = useRef(currentFrame);
   const rotationIntervalRef = useRef(0);
+  const startRef = useRef(Date.now())
 
   // Provide a way to access current frame within frame loading functions, so that the appropriate frame is loaded next
   useEffect(() => {
@@ -59,7 +62,7 @@ const App = () => {
       <Canvas id="canvas">
         <ambientLight intensity={1} />
         <OrbitControls />
-        <mesh rotation={getRotation(frames)} position={[0, .3, 0]}>
+        <mesh rotation={getRotation(frames, startRef.current)} position={[0, .3, 0]}>
           { currentFrame !== null && getLoadedRatio(frames) >= 1 ? <ViewFrame frame={currentFrame} /> : <ViewFrame frame={frames[frames.length - 1]} />}
         </mesh>
       </Canvas>

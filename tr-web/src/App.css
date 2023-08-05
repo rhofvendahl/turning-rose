@@ -6,11 +6,9 @@
 #controls-wrapper {
   position: absolute;
   z-index: 1;
-  left: 0;
-  right: 0;
+  left: 10px;
+  right: 10px;
   bottom: 0;
-  padding-right: 10px;
-  padding-left: 10px;
   max-width: 1200px;
   margin: auto;
 }

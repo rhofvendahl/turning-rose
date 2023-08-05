@@ -11,6 +11,8 @@
   bottom: 0;
   padding-right: 10px;
   padding-left: 10px;
+  max-width: 1200px;
+  margin: auto;
 }
 
 #canvas {

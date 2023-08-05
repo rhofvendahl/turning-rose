@@ -1,16 +1,16 @@
 #mode-button-wrapper {
     position: relative;
     /* Get ends to line up with slider min/max, so buttons are above slider vals */
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 .mode-button {
     position: absolute;
     /* 'left' value set in component */
-    width: 28px;
-    height: 28px;
-    border-radius: 14px;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
     background-color:  var(--control-background-color);
     transform: translateX(-50%);
     bottom: 0;

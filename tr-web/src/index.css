@@ -1,13 +1,11 @@
 /* Global CSS variables */
 :root {
     --canvas-color: #0f0f0f;
-    --control-background-color: #2a2a2a;
-    --control-foreground-color: #666666;
-    /* --control-prominent-color: #cccccc; */
-    --control-prominent-color: #bbbbbb;
-    /* --track-left-color: #4f4f4f; */
-    --text-light: #777777;
-    --text-dark: #1a1a1a;
+    --control-background-color: #333333;
+    --control-foreground-color: #777777;
+    --control-prominent-color: #cccccc;
+    --text-light: #888888;
+    --text-dark: #111111;
     --rose-pink: #D5B3D0;
     --leaf-green: #557A46;
     --leaf-green-dark: #202317;

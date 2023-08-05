@@ -2,16 +2,16 @@
 
 /* STYLE VARIABLE DEFINITIONS */
 input[type=range] {
-    --track-height: 12px;
+    --track-height: 16px;
     --track-border-radius: 3px;
-    --thumb-width: 24px;
+    --thumb-width: 28px;
     --thumb-border-radius: 3px;
     --thumb-color: var(--control-foreground-color);
     --track-left-color: var(--control-background-color);
     --track-right-color: #1a1a1a;
     /* NOTE: This is a hacky way of setting the after-thumb track color */
     /* (The +5 to x-offset makes it so shadow starts in middle of thumb) */
-    --box-shadow-hack: 4005px 0 0 4000px var(--track-right-color);
+    --box-shadow-hack: 4000px 0 0 4000px var(--track-right-color);
 }
 
 /* GENERAL */

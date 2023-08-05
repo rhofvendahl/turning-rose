@@ -18,7 +18,7 @@ const getRotation = (frames: Frame[]): [number, number, number] => {
   if (loadedRatio >= 1) {
     return [0, 0, 0];
   }
-  return [0, loadedRatio * .2, 0];
+  return [0, loadedRatio * .3, 0];
 };
 
 const App = () => {
@@ -50,7 +50,7 @@ const App = () => {
       <Canvas id="canvas">
         <ambientLight intensity={1} />
         <OrbitControls />
-        <mesh rotation={getRotation(frames)}>
+        <mesh rotation={getRotation(frames)} position={[0, .3, 0]}>
           { currentFrame !== null && getLoadedRatio(frames) >= 1 ? <ViewFrame frame={currentFrame} /> : <ViewFrame frame={frames[frames.length - 1]} />}
         </mesh>
       </Canvas>

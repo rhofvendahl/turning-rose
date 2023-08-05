@@ -1,5 +1,8 @@
 #controls {
-    width: 100%;
+    /* width: 100%; */
+    /* position: absolute; */
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 #loop-button {

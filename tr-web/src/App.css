@@ -3,16 +3,20 @@
   background-color: var(--canvas-color);
 }
 
-#controls-wrapper {
-  position: absolute;
-  z-index: 1;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  max-width: 1200px;
-  margin: auto;
-  margin-left: 10px;
-  margin-right: 10px;
+#controls-wrapper-outer {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#controls-wrapper-inner {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
 }
 
 #canvas {

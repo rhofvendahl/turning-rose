@@ -173,7 +173,7 @@ const Controls = ({ frames, currentFrame, setCurrentFrame }: {
   }, [playSpeed, playTimeout]);
 
   return (
-    <div>
+    <div id="controls">
       <div id="loop-button" className={ playControlType === "manual" ? "control-manual" : `looping control-${playControlType}`} onClick={() => {
         // Toggle between no loop and bouncy loop
         setPlayControlType(playControlType === "manual" ? "bouncyLoop" : "manual");

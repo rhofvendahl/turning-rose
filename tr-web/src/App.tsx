@@ -55,8 +55,8 @@ const App = () => {
         </mesh>
       </Canvas>
       {getLoadedRatio(frames) >= 1 ?
-        <div>
-          <div id="controls-wrapper">
+        <div id="controls-wrapper-outer">
+          <div id="controls-wrapper-inner">
             <Controls frames={frames} currentFrame={currentFrame} setCurrentFrame={setCurrentFrame} />
           </div>
         </div> :

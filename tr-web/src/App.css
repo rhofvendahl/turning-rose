@@ -1,18 +1,19 @@
 #content-container {
+    position: relative;
     height: 100%;
     background-color: var(--canvas-color);
-  }
-  
-  #controls-wrapper {
+}
+
+#controls-wrapper {
     position: absolute;
     z-index: 1;
-    left: 0px;
-    right: 0px;
+    left: 10px;
+    right: 10px;
     bottom: 0;
     max-width: 1200px;
     margin: auto;
-  }
-  
-  #canvas {
-      height: 100%;
-  }
+}
+
+#canvas {
+    height: 100%;
+}

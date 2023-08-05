@@ -12,6 +12,14 @@ import { getLoadedRatio } from "./shared"
 // This doesn't seem ideal, but even useEffect with empty inputs within App seems to run twice over the app"s lifecycle - no good.
 let hasInitialized = false;
 
+const radToDog = (rad: number): number => {
+  return rad * 360 / (2 * Math.PI);
+};
+
+const degToRad = (deg: number): number => {
+  return deg * 2 * Math.PI / 360;
+};
+
 // Yes I am aware that using loading ratio to drive rotation is silly. There are other ways to do it. This is easy.
 // UPDATE: And here I was wonderwing why it moves so slowly on first load...
 const getRotation = (frames: Frame[]): [number, number, number] => {
@@ -19,7 +27,7 @@ const getRotation = (frames: Frame[]): [number, number, number] => {
   if (loadedRatio >= 1) {
     return [0, 0, 0];
   }
-  return [0, loadedRatio * .3, 0];
+  return [0, degToRad(loadedRatio * 45), 0];
 };
 
 const App = () => {

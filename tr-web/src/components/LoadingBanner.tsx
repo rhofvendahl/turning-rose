@@ -17,7 +17,10 @@ const LoadingBanner = ({ frames }: {
     <div id="loading-banner">
       <div id="loading-track"></div>
       <div id="loading-progress" style={{ width: getPercent(frames) }} />
-      <div id="loading-text">Loading rose...</div>
+      <div id="text">
+        <div id="loading-text">Loading rose...</div>
+        <div id="instructions-text">( Drag me around! )</div>
+      </div>
     </div>
   );
 };

@@ -5,10 +5,10 @@
     height: 100px;
     z-index: 2;
     text-align: center;
-    line-height: 100px;
+    /* line-height: 100px; */
 }
 
-#loading-track, #loading-progress {
+#text, #loading-progress {
     position: absolute;
     bottom: 0;
     height: 100%;
@@ -23,8 +23,15 @@
 }
 
 #loading-text {
+    margin-top: 18px;
     width: 100%;
     color: white;
     opacity: .9;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    /* line-height: 40px; */
+}
+
+#instructions-text {
+    color: white;
+    margin-top: 20px;
 }

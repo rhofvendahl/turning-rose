@@ -9,6 +9,9 @@ import { SPEED_CONSTANTS, ControlType, LOADED_THRESHOLD, getLoadedRatio } from "
 import "./Controls.css";
 
 // GENERAL NOTE: "Speed" throughout is always positive, and "direction" is a boolean where true=forward & false=backward
+// Also, throughout this app speed is generally calculated as a function nof position, rather than time.
+// Looking back I am genuinely not sure why I set out to do this. (Maybe to keep speed synced with position to ensure it's always slow when it blooms?)
+// I hope I had a good reason, as it made things tricky.
 
 // The idea is that the speed is fast at the start, gets slow near the end (time to view rose), slowly moves backward, speeds up til the start, then can bounce back forward again.
 // To do this we'll need a cosine function, with x as position and y as the rate of change (fps).
@@ -135,6 +138,7 @@ const Controls = ({ frames, currentFrame, setCurrentFrame }: {
           // Wait a bit to allow loading to continue
           const prevPlaySpeed = playSpeed;
           setPlaySpeed(null);
+          // TODO: Is this still necessary? Might be a better way now
           waitOnLoading(frames, currentFrame.index, LOADED_THRESHOLD, () => setPlaySpeed(prevPlaySpeed));
           return;
         }

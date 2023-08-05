@@ -13,6 +13,7 @@ import { getLoadedRatio } from "./shared"
 let hasInitialized = false;
 
 // Yes I am aware that using loading ratio to drive rotation is silly. There are other ways to do it. This is easy.
+// UPDATE: And here I was wonderwing why it moves so slowly on first load...
 const getRotation = (frames: Frame[]): [number, number, number] => {
   const loadedRatio = getLoadedRatio(frames);
   if (loadedRatio >= 1) {

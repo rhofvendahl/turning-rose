@@ -1,5 +1,4 @@
 #content-container {
-    position: relative;
     height: 100%;
     background-color: var(--canvas-color);
 }
@@ -7,8 +6,8 @@
 #controls-wrapper {
     position: absolute;
     z-index: 1;
-    left: 10px;
-    right: 10px;
+    left: 0;
+    right: 0;
     bottom: 0;
     max-width: 1200px;
     margin: auto;

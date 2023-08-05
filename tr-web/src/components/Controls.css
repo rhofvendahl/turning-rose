@@ -1,3 +1,11 @@
+#controls {
+    /* I don't like setting margins here, but mobile isn't rendering them any other way */
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 0;
+}
+
 #loop-button {
     margin-bottom: 45px;
     background-color: var(--control-background-color);

@@ -1,3 +1,7 @@
+#controls {
+    width: 100%;
+}
+
 #loop-button {
     margin-bottom: 45px;
     background-color: var(--control-background-color);

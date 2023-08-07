@@ -2,7 +2,7 @@ import { Frame } from "./hooks/useFrames";
 
 // NOTE: "Speed" throughout is always positive, and "direction" is a boolean where true=forward & false=backward
 
-const SPEED_MIN = 2;
+const SPEED_MIN = 1.5;
 const SPEED_MAX = 30;
 
 export const SPEED_CONSTANTS = {
@@ -11,7 +11,7 @@ export const SPEED_CONSTANTS = {
   REWIND: SPEED_MAX * .8,
   PLAY: 8,
   FAST_FORWARD: SPEED_MAX * .8,
-  LOOP_CAP: SPEED_MAX * .8,
+  LOOP_CAP: SPEED_MAX * .7,
 }
 
 // Used mainly to tell ModeInput what to be; NOT a state.
